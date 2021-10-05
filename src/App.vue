@@ -38,7 +38,17 @@ const store = new Vuex.Store({
         (error) => {
           console.log(error)
         })
-      }
+      },
+      getSearchCharacters ({ commit }, search) {
+      fetch(`https://rickandmortyapi.com/api/character/?name=${search}`)
+        .then(res => res.json())
+        .then((result) => {
+          commit('SET_CHARACTERS', result)
+        },
+        (error) => {
+          console.log(error)
+        })
+      },
     }
 })
 

@@ -2,6 +2,13 @@
   <div class="home">
     <Header/>
     <section>
+      <input 
+        v-model="search"
+        type="search"
+        placeholder="Rick, Morty, Jerry..."
+      />
+      <button @click="handleClick(search)">Let's Search</button>
+
       <div id="characters-container">
           <div v-for="character in characters.results" v-bind:key="character.id">
           <CharacterCard v-bind:character="character" 
@@ -25,6 +32,14 @@ export default {
   components: {
     Header,
     CharacterCard,
+  },
+  methods: {
+      handleClick(search) {
+        console.log(search);
+        // this.$store.dispatch('loadCharacters');
+        this.$store.dispatch('getSearchCharacters', search);
+      },
+
   },
   computed: {
     characters() {
