@@ -1,11 +1,19 @@
 <template>
   <div id="app">
     <Header/>
-    <div>
-      <div v-for="character in characters.results" v-bind:key="character.id">
-        <h2>{{ character.name }}</h2>
+    <section>
+      <div id="characters-container">
+        <div v-for="character in characters.results" v-bind:key="character.id">
+          <CharacterCard v-bind:character="character" 
+            v-bind:character-name="character.name"
+            v-bind:character-image="character.image"
+            v-bind:character-status="character.status"
+            v-bind:character-gender="character.gender"
+        
+          />
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -13,12 +21,12 @@
 import Header from './components/Header.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import CharacterCard from './components/CharacterCard.vue'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
     characters: [],
   },
   getters: {
@@ -27,9 +35,6 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-    increment (state) {
-      state.count++
-    },
     SET_CHARACTERS (state, characters) {
       state.characters = characters
     }
@@ -48,15 +53,12 @@ const store = new Vuex.Store({
     }
 })
 
-store.dispatch('loadCharacters')
-console.log(store.state.characters)
-
-
 export default {
   name: 'App',
   store: store,
   components: {
-    Header
+    Header,
+    CharacterCard
   },
   computed: {
     characters() {
@@ -70,11 +72,19 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#characters-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>
