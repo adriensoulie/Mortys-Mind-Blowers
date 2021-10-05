@@ -1,27 +1,16 @@
 <template>
   <div id="app">
-    <Header/>
-    <section>
-      <div id="characters-container">
-        <div v-for="character in characters.results" v-bind:key="character.id">
-          <CharacterCard v-bind:character="character" 
-            v-bind:character-name="character.name"
-            v-bind:character-image="character.image"
-            v-bind:character-status="character.status"
-            v-bind:character-gender="character.gender"
-        
-          />
-        </div>
-      </div>
-    </section>
+    <div id="nav">
+      <router-link to="/">Home</router-link> 
+      <router-link to="/characters">Characters</router-link> 
+    </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import CharacterCard from './components/CharacterCard.vue'
 
 Vue.use(Vuex)
 
@@ -55,11 +44,7 @@ const store = new Vuex.Store({
 
 export default {
   name: 'App',
-  store: store,
-  components: {
-    Header,
-    CharacterCard
-  },
+  store,
   computed: {
     characters() {
       return this.$store.getters.characters;
@@ -72,19 +57,11 @@ export default {
 </script>
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#characters-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 </style>
