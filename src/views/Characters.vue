@@ -11,7 +11,9 @@
 
       <div id="characters-container">
           <div v-for="character in characters.results" v-bind:key="character.id">
-          <CharacterCard v-bind:character="character" 
+          <CharacterCard 
+            v-bind:character="character" 
+            v-bind:character-id="character.id"
             v-bind:character-name="character.name"
             v-bind:character-image="character.image"
           />
@@ -35,11 +37,8 @@ export default {
   },
   methods: {
       handleClick(search) {
-        console.log(search);
-        // this.$store.dispatch('loadCharacters');
         this.$store.dispatch('getSearchCharacters', search);
       },
-
   },
   computed: {
     characters() {

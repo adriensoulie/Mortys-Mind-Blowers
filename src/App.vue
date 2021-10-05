@@ -17,15 +17,22 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     characters: [],
+    character: [],
   },
   getters: {
     characters: state => {
       return state.characters;
-    }
+    },
+    character: state => {
+      return state.character;
+    },
   },
   mutations: {
     SET_CHARACTERS (state, characters) {
       state.characters = characters
+    },
+    SET_CHARACTER (state, character) {
+      state.character = character
     }
   },
   actions: {
@@ -49,7 +56,17 @@ const store = new Vuex.Store({
           console.log(error)
         })
       },
-    }
+      getCharacterById ({ commit }, id) {
+      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        .then(res => res.json())
+        .then((result) => {
+          commit('SET_CHARACTER', result)
+        },
+        (error) => {
+          console.log(error)
+        })
+      },
+  }
 })
 
 export default {
