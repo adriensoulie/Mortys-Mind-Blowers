@@ -1,6 +1,6 @@
 <template>
     <div>
-      <router-link :to="{ name: 'Character', params: {id: characterId}}">
+      <router-link :to="{ name: 'Character', params: {id: characterId}}" style="text-decoration: none; color: inherit;">
       <!-- <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link> -->
         <div id="card" v-on:click="handleClick(characterId)">
             <img :src=characterImage />
