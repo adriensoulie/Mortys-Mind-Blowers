@@ -14,10 +14,20 @@
         <option value="unknown">Unknown</option>
       </select>   
       <button @click="handleClick(search, status)">Let's Search</button><br>
-
+      
       <h2 class="title is-1">{{ page }}</h2>
-      <button @click="pagePrevious()">Previous</button>
-      <button @click="pageNext()">Next</button>
+      <button 
+        v-if="this.page != 1" 
+        @click="pagePrevious()"
+      >
+        Previous
+      </button>
+      <button 
+        v-if="this.page != this.characters.info.pages" 
+        @click="pageNext()"
+      >
+        Next
+      </button>
 
       <div id="characters-container">
           <div v-for="character in characters.results" v-bind:key="character.id">
