@@ -15,6 +15,10 @@
       </select>   
       <button @click="handleClick(search, status)">Let's Search</button><br>
 
+      <h2 class="title is-1">{{ page }}</h2>
+      <button @click="pagePrevious()">Previous</button>
+      <button @click="pageNext()">Next</button>
+
       <div id="characters-container">
           <div v-for="character in characters.results" v-bind:key="character.id">
           <CharacterCard 
@@ -45,14 +49,35 @@ export default {
     return { 
       status: '',
       search: '',
+      page: 1,
     }
   },
   methods: {
-      handleClick(search, status) {
-        console.log("status",status)
-        let payload = {'search': search, 'status': status}
-        this.$store.dispatch('getSearchCharacters', payload);
-      },
+    pageNext(){
+      // Check if the last page is reached then null out of the function if it's the case
+      this.page === this.characters.info.pages ? null :
+      this.page += 1
+      // Dispatch Payload to fetch the proper page
+      let payload = {'search': this.search, 'status': this.status, 'page': this.page}
+      this.$store.dispatch('getSearchCharacters', payload);
+
+    },
+    pagePrevious(){
+      // Check if the first page is reached then null out of the function if it's the case
+      this.page === 1 ? null : 
+      this.page -= 1
+      // Dispatch Payload to fetch the proper page
+      let payload = {'search': this.search, 'status': this.status, 'page': this.page}
+      this.$store.dispatch('getSearchCharacters', payload);
+    
+    },
+    handleClick(search, status) {
+      console.log("status",status)
+      // Reset old Pagination as we fetch new data
+      this.page = 1
+      let payload = {'search': search, 'status': status}
+      this.$store.dispatch('getSearchCharacters', payload);
+    },
   },
   computed: {
     characters() {

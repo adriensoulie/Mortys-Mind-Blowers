@@ -43,7 +43,8 @@ const store = new Vuex.Store({
         })
       },
       getSearchCharacters ({ commit }, payload) {
-      fetch(`https://rickandmortyapi.com/api/character/?name=${payload.search}&status=${payload.status}`)
+      console.log("payload", payload)
+      fetch(`https://rickandmortyapi.com/api/character/?&page=${payload.page}&name=${payload.search}&status=${payload.status}`)
         .then(res => res.json())
         .then((result) => {
           commit('SET_CHARACTERS', result)
