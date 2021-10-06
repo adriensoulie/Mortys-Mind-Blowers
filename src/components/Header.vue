@@ -1,12 +1,14 @@
 <template>
     <div class="header">
-        <div class="header-app">
-            <h1>SchwiftyApp</h1>
-            <img alt="Rick and Morty Portal" src="../assets/Rick-And-Morty.png" style='width: 120px'>
-        </div>
-        <a href=''>
-            Login
-        </a>
+            <router-link to="/" style="text-decoration: none; color: inherit;">
+                <div class="header-app">
+                        <h1>SchwiftyApp</h1>
+                        <img alt="Rick and Morty Portal" src="../assets/Rick-And-Morty.png" style='width: 120px'>
+                </div>
+            </router-link> 
+            <a id="login" href=''>
+                Login
+            </a>
     </div>
 </template>
 
@@ -30,7 +32,11 @@ h1 {
     color: black;
 }
 
-a {
+li a {
+    text-decoration: none;
+}
+
+#login {
     padding: 5px 20px 5px 20px;
     background-color:	white;
     border: 1px solid black;
@@ -41,7 +47,7 @@ a {
     text-decoration: inherit;
 }
 
-a:hover {
+#login:hover {
     border: 1px solid transparent;
     background-color: #97ce4c;
     color: white;
