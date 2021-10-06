@@ -7,7 +7,13 @@
         type="search"
         placeholder="Rick, Morty, Jerry..."
       />
-      <button @click="handleClick(search)">Let's Search</button>
+      <select v-model="status" name="status" id="status">
+        <option selected value="all">All</option>
+        <option value="alive">Alive</option>
+        <option value="dead">Dead</option>
+        <option value="unknown">Unknown</option>
+      </select>   
+      <button @click="handleClick(search, status)">Let's Search</button><br>
 
       <div id="characters-container">
           <div v-for="character in characters.results" v-bind:key="character.id">
@@ -35,9 +41,17 @@ export default {
     Header,
     CharacterCard,
   },
+  data: function(){
+    return { 
+      status: '',
+      search: '',
+    }
+  },
   methods: {
-      handleClick(search) {
-        this.$store.dispatch('getSearchCharacters', search);
+      handleClick(search, status) {
+        console.log("status",status)
+        let payload = {'search': search, 'status': status}
+        this.$store.dispatch('getSearchCharacters', payload);
       },
   },
   computed: {
