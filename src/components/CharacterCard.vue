@@ -1,8 +1,7 @@
 <template>
     <div>
       <router-link :to="{ name: 'Character', params: {id: characterId}}" style="text-decoration: none; color: inherit;">
-      <!-- <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link> -->
-        <div id="card" v-on:click="handleClick(characterId)">
+        <div id="card">
             <img :src=characterImage />
             <h2>{{ characterName }}</h2>
             <p>{{ characterGender }}</p>
@@ -21,12 +20,6 @@ export default {
         characterStatus: String,
         characterGender: String,
     },
-    methods: {
-      handleClick(id) {
-        console.log(id);
-        this.$store.dispatch('getCharacterById', id);
-      },
-  },
 }
 </script>
 

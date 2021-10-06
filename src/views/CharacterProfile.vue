@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header/>
         <div>
             <router-link to="/characters">
                 <img id="arrow-nav" src="../assets/arrow-back.png" width="30px"/>
@@ -34,12 +35,23 @@
 
 
 <script>
+import Header from '../components/Header.vue'
+
 export default ({
-computed: {
-    character() {
-        return this.$store.getters.character;
+    components: {
+        Header
     },
-},
+    computed: {
+        character() {
+            return this.$store.getters.character;
+        },
+        currentRouteName() {
+            return this.$route.path;
+        },
+    },
+    beforeCreate() {
+        this.$store.dispatch('getCharacterById', this.$route.path.replace("/characters/", ""))
+    },
 })
 </script>
 
@@ -81,6 +93,7 @@ computed: {
     }
     .card-infos {
         display: block;
+        width: 300px;
         margin-right: 30px;
     }
     .card-image {
@@ -100,6 +113,6 @@ computed: {
         position: absolute;
         top: 0;
         left: 0;
-        margin: 20px;
+        margin: 120px 20px 20px 20px;
     }
 </style>
