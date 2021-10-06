@@ -8,7 +8,7 @@
         placeholder="Rick, Morty, Jerry..."
       />
       <select v-model="status" name="status" id="status">
-        <option selected value="all">All</option>
+        <option selected value="">All</option>
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
         <option value="unknown">Unknown</option>
