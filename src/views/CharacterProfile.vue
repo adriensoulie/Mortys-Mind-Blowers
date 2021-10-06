@@ -14,16 +14,16 @@
                             <div class="card-status">
                                 <div v-if="character.status === 'Alive'" class="status-icon-alive"></div>
                                 <div v-if="character.status === 'Dead'" class="status-icon-dead"></div>
-                                <div v-if="character.status === 'Unknown'" class="status-icon-unknown"></div>
+                                <div v-if="character.status === 'unknown'" class="status-icon-unknown"></div>
                                 <p> {{ character.status }} - {{ character.species }} </p>
                             </div>
-                            <div>
+                            <div class="section-infos">
                                 <p>Last Seen Location:</p> 
-                                <p>{{character.location.name}}</p>
+                                <p class="font-weight">{{character.location.name}}</p>
                             </div>
-                            <div>
+                            <div class="section-infos">
                                 <p>Gender:</p>
-                                <p>{{ character.gender }}</p>
+                                <p class="font-weight">{{ character.gender }}</p>
                             </div>
                         </div>
                     </div>
@@ -58,6 +58,7 @@ export default ({
 <style scoped>
     p {
         display: flex;
+        margin: 0;
     }
     .status-icon-alive {
         height: 0.5rem;
@@ -88,7 +89,7 @@ export default ({
         display: flex;
         margin-top: 90px ;
         border-radius: 15px;
-        background-color: lightgray;
+        background-color: lemonchiffon;
         width: fit-content;
     }
     .card-infos {
@@ -103,11 +104,22 @@ export default ({
     .card-name {
         display: flex;
         font-size: 28px;
+        font-weight: 900;
+        color: black;
     }
     .card-status {
         display: flex;
+        font-size: 18px;
+        font-weight: 700;
         flex-direction: row;
         align-items: center;
+    }
+    .font-weight {
+        font-weight: 600;
+    }
+    .section-infos {
+        margin: 20px 0px 20px 0;
+        font-size: 16px;
     }
     #arrow-nav {
         position: absolute;
