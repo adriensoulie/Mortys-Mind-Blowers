@@ -14,29 +14,36 @@
         <option value="unknown">Unknown</option>
       </select>   
       <button @click="handleClick(search, status)">Let's Search</button><br>
-      
-      <h2 class="title is-1">{{ navigation_page }}/{{this.characters.info.pages}}</h2>
-      <button 
-        v-if="navigation_page != 1" 
-        @click="pagePrevious()"
-      >
-        Previous
-      </button>
-      <button 
-        v-if="navigation_page != this.characters.info.pages" 
-        @click="pageNext()"
-      >
-        Next
-      </button>
+      <div class="pagination">
+        <img 
+          v-if="navigation_page != 1" 
+          @click="pagePrevious()"
+          src="../assets/arrow-back.png" 
+          height="30px" 
+          width="30px"
+          style="margin: 5px"
+        />
+        <h2 class="title is-1" :style="navigation_page != 1 ? '' : 'margin-left: 30px'">{{ navigation_page }} / {{this.characters.info.pages}}</h2>
+        <img 
+          v-if="navigation_page != this.characters.info.pages" 
+          @click="pageNext()"
+          class="arrow-right" 
+          id="arrow-nav" 
+          src="../assets/arrow-back.png" 
+          height="30px" 
+          width="30px"
+          style="margin: 5px"
+        />
+      </div>
       <div
         id="characters-container"
         v-if="isLoading"
       > 
-      Loading Characters...
+        Loading Characters...
       </div>
 
       <div v-else id="characters-container">
-          <div v-for="character in characters.results" v-bind:key="character.id">
+        <div v-for="character in characters.results" v-bind:key="character.id">
           <CharacterCard 
             v-bind:character="character" 
             v-bind:character-id="character.id"
@@ -51,7 +58,6 @@
 
 
 <script>
-
 import Header from '../components/Header.vue'
 import CharacterCard from '../components/CharacterCard.vue'
 
@@ -119,6 +125,18 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow-right {
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
   }
 </style>
 
