@@ -1,7 +1,44 @@
 <template>
     <div>
-        <h1>
-            Sorry, this page doesn't exist or has been moved to another location
-        </h1>
+        <div>
+            <Header/>
+            <h1 style="margin-top: 60px">
+                Sorry, this page doesn't exist or has been moved to another location
+            </h1>
+            <router-link to="/characters" style="text-decoration: none; color: inherit;">
+            <a id="redirect" href=''>
+                Take me back !
+            </a>
+            </router-link>
+        </div>
     </div>
 </template>
+
+<script>
+import Header from '../components/Header.vue'
+
+export default ({
+    components: {
+        Header,
+    }
+})
+</script>
+
+
+<style scoped>
+#redirect {
+    padding: 5px 20px 5px 20px;
+    background-color:	white;
+    border: 1px solid black;
+    color: black;
+    font-weight: 800;
+    transition: 0.3s;
+    border-radius: 4px;
+    text-decoration: inherit;
+}
+#redirect:hover {
+    border: 1px solid transparent;
+    background-color: #97ce4c;
+    color: white;
+}
+</style>

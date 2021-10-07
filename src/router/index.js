@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CharacterProfile from '../views/CharacterProfile.vue'
 import Characters from '../views/Characters.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,12 @@ const routes = [
     path: '/characters/:id',
     name: 'Character',
     component: CharacterProfile,
+  },
+  {
+    // will match everything
+    path: '*',
+    name: '404',
+    component: NotFound
   }
 ]
 
