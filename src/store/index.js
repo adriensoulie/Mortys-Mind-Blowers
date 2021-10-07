@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     characters: [],
     character: [],
+    characters_status: null,
     navigation_page: 1,
     isLoading: false,
   },
@@ -39,7 +40,7 @@ export default new Vuex.Store({
     },
     RESET_NAVIGATION_PAGE (state) {
         state.navigation_page = 1
-    }
+    },
   },
   actions: {
     loadCharacters ({ commit }) {

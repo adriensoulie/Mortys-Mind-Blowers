@@ -2,7 +2,8 @@
     <div>
       <router-link :to="{ name: 'Character', params: {id: characterId}}" style="text-decoration: none; color: inherit;">
         <div id="card">
-            <img class="card-image" :src=characterImage />
+            <img v-if="!characterImage" class="card-image"/>
+            <img v-else class="card-image" :src=characterImage />
             <h2 class="character-name">{{ characterName }}</h2>
             <p>{{ characterGender }}</p>
             <p>{{ characterStatus }}</p>
