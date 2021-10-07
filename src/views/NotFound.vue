@@ -6,9 +6,9 @@
                 Sorry, this page doesn't exist or has been moved to another location
             </h1>
             <router-link to="/characters" style="text-decoration: none; color: inherit;">
-            <a id="redirect" href=''>
-                Take me back !
-            </a>
+                <a id="redirect" href=''>
+                    Take me back !
+                </a>
             </router-link>
         </div>
     </div>

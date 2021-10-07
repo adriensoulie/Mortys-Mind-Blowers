@@ -4,7 +4,7 @@
     <section>
       <h2>Welcome to SchwiftyApp</h2>
       <p>powered by</p>
-      <code>https://rickandmortyapi.com/ </code>
+      <code>https://rickandmortyapi.com/</code>
     </section>
     <router-link id="nav" to="/characters">
       Let's view characters !
@@ -13,9 +13,7 @@
 </template>
 
 <script>
-
 import Header from '../components/Header.vue'
-
 
 export default {
   name: 'Home',
