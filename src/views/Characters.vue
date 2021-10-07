@@ -15,21 +15,27 @@
       </select>   
       <button @click="handleClick(search, status)">Let's Search</button><br>
       
-      <h2 class="title is-1">{{ page }}</h2>
+      <h2 class="title is-1">{{ navigation_page }}/{{this.characters.info.pages}}</h2>
       <button 
-        v-if="this.page != 1" 
+        v-if="navigation_page != 1" 
         @click="pagePrevious()"
       >
         Previous
       </button>
       <button 
-        v-if="this.page != this.characters.info.pages" 
+        v-if="navigation_page != this.characters.info.pages" 
         @click="pageNext()"
       >
         Next
       </button>
+      <div
+        id="characters-container"
+        v-if="isLoading"
+      > 
+      Loading Characters...
+      </div>
 
-      <div id="characters-container">
+      <div v-else id="characters-container">
           <div v-for="character in characters.results" v-bind:key="character.id">
           <CharacterCard 
             v-bind:character="character" 
@@ -55,31 +61,32 @@ export default {
     Header,
     CharacterCard,
   },
+  created() {
+    let payload = {'search': this.search, 'status': this.status, 'page': this.navigation_page}
+    this.$store.dispatch('getSearchCharacters', payload);
+  },
   data: function(){
     return { 
       status: '',
       search: '',
-      page: 1,
     }
   },
   methods: {
     pageNext(){
       // Check if the last page is reached then null out of the function if it's the case
-      this.page === this.characters.info.pages ? null :
-      this.page += 1
+      this.navigation_page === this.characters.info.pages ? null :
+      this.$store.commit('INCREMENT_NAVIGATION_PAGE')
       // Dispatch Payload to fetch the proper page
-      let payload = {'search': this.search, 'status': this.status, 'page': this.page}
+      let payload = {'search': this.search, 'status': this.status, 'page': this.navigation_page}
       this.$store.dispatch('getSearchCharacters', payload);
-
     },
     pagePrevious(){
       // Check if the first page is reached then null out of the function if it's the case
-      this.page === 1 ? null : 
-      this.page -= 1
+      this.navigation_page === 1 ? null : 
+      this.$store.commit('DECREMENT_NAVIGATION_PAGE')
       // Dispatch Payload to fetch the proper page
-      let payload = {'search': this.search, 'status': this.status, 'page': this.page}
+      let payload = {'search': this.search, 'status': this.status, 'page': this.navigation_page}
       this.$store.dispatch('getSearchCharacters', payload);
-    
     },
     handleClick(search, status) {
       console.log("status",status)
@@ -87,12 +94,19 @@ export default {
       this.page = 1
       let payload = {'search': search, 'status': status}
       this.$store.dispatch('getSearchCharacters', payload);
+      this.$store.commit('RESET_NAVIGATION_PAGE')
     },
   },
   computed: {
+    isLoading() {
+      return this.$store.getters.isLoading
+    },
     characters() {
       return this.$store.getters.characters;
     },
+    navigation_page() {
+      return this.$store.getters.navigation_page
+    }
   },
 }
 </script>

@@ -7,6 +7,8 @@ export default new Vuex.Store({
   state: {
     characters: [],
     character: [],
+    navigation_page: 1,
+    isLoading: false,
   },
   getters: {
     characters: state => {
@@ -15,28 +17,47 @@ export default new Vuex.Store({
     character: state => {
       return state.character;
     },
+    navigation_page: state => {
+        return state.navigation_page
+    }
   },
   mutations: {
     SET_CHARACTERS (state, characters) {
-      state.characters = characters
+        state.characters = characters
     },
     SET_CHARACTER (state, character) {
-      state.character = character
+        state.character = character
+    },
+    SET_LOADING (state, loading) {
+        state.isLoading = loading
+    },
+    INCREMENT_NAVIGATION_PAGE (state) {
+        state.navigation_page += 1
+    },
+    DECREMENT_NAVIGATION_PAGE (state) {
+        state.navigation_page -= 1
+    },
+    RESET_NAVIGATION_PAGE (state) {
+        state.navigation_page = 1
     }
   },
   actions: {
     loadCharacters ({ commit }) {
-      fetch("https://rickandmortyapi.com/api/character/?page=1")
-        .then(res => res.json())
-        .then((result) => {
-          commit('SET_CHARACTERS', result)
+        commit('SET_LOADING', true)
+        fetch("https://rickandmortyapi.com/api/character/?page=1")
+            .then(res => res.json())
+            .then((result) => {
+                commit('SET_CHARACTERS', result)
+            },
+            (error) => {
+                console.log(error)
+            })
+            .then(
+              commit('SET_LOADING', false)
+            )
         },
-        (error) => {
-          console.log(error)
-        })
-      },
-      getSearchCharacters ({ commit }, payload) {
-      console.log("payload", payload)
+    getSearchCharacters ({ commit }, payload) {
+    commit('SET_LOADING', true)
       fetch(`https://rickandmortyapi.com/api/character/?&page=${payload.page}&name=${payload.search}&status=${payload.status}`)
         .then(res => res.json())
         .then((result) => {
@@ -45,8 +66,12 @@ export default new Vuex.Store({
         (error) => {
           console.log(error)
         })
+        .then(
+          commit('SET_LOADING', false)
+        )
       },
-      getCharacterById ({ commit }, id) {
+    getCharacterById ({ commit }, id) {
+    commit('SET_LOADING', true)
       fetch(`https://rickandmortyapi.com/api/character/${id}`)
         .then(res => res.json())
         .then((result) => {
@@ -55,6 +80,9 @@ export default new Vuex.Store({
         (error) => {
           console.log(error)
         })
+        .then(
+          commit('SET_LOADING', false)
+        )
       },
   }
 })

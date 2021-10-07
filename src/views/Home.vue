@@ -22,6 +22,14 @@ export default {
   components: {
     Header,
   },
+  computed: {
+    characters() {
+      return this.$store.getters.characters;
+    },
+  },
+  created() {
+    this.$store.dispatch('loadCharacters');
+  },
 
 }
 </script>

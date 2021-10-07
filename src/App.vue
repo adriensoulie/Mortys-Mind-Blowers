@@ -8,14 +8,6 @@
 
 export default {
   name: 'App',
-  computed: {
-    characters() {
-      return this.$store.getters.characters;
-    },
-  },
-  created() {
-    this.$store.dispatch('loadCharacters');
-  },
 }
 </script>
 

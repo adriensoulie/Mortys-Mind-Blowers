@@ -2,8 +2,8 @@
     <div>
       <router-link :to="{ name: 'Character', params: {id: characterId}}" style="text-decoration: none; color: inherit;">
         <div id="card">
-            <img :src=characterImage />
-            <h2>{{ characterName }}</h2>
+            <img class="card-image" :src=characterImage />
+            <h2 class="character-name">{{ characterName }}</h2>
             <p>{{ characterGender }}</p>
             <p>{{ characterStatus }}</p>
         </div>
@@ -27,6 +27,16 @@ export default {
     #card {
         margin: 10px;
         padding: 10px;
+    }
+    .card-image {
+        width: -webkit-fill-available;
+        height: 300px;
+    }
+    .character-name {
+        max-width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 

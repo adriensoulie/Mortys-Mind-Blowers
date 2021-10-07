@@ -7,7 +7,14 @@
             </router-link> 
             <section>
                 <div class="container">
-                    <div class="card">
+                    <div
+                        id="characters-container"
+                        v-if="isLoading"
+                        style="margin-top: 120px"
+                    > 
+                        Loading Characters...
+                    </div>
+                    <div v-else class="card">
                         <img class="card-image" :src=character.image />
                         <div class="card-infos">
                             <h2 class="card-name"> {{ character.name }}</h2>
@@ -42,6 +49,9 @@ export default ({
         Header
     },
     computed: {
+        isLoading() {
+            return this.$store.getters.isLoading;
+        },
         character() {
             return this.$store.getters.character;
         },
@@ -51,6 +61,9 @@ export default ({
     },
     beforeCreate() {
         this.$store.dispatch('getCharacterById', this.$route.path.replace("/characters/", ""))
+    },
+    created() {
+        this.$store.dispatch('getCharacterById', this.character.id)
     },
 })
 </script>
