@@ -102,8 +102,16 @@ export default ({
         display: flex;
         margin-top: 90px ;
         border-radius: 15px;
+        will-change: transform;
+        transition: transform 350ms;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
         background-color: lemonchiffon;
         width: fit-content;
+    }
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        transition: transform 125ms;
+        transform: translateY(-10px);
     }
     .card-infos {
         display: block;

@@ -19,19 +19,24 @@
           v-if="navigation_page != 1" 
           @click="pagePrevious()"
           src="../assets/arrow-back.png" 
-          height="30px" 
-          width="30px"
+          height="20px" 
+          width="20px"
           style="margin: 5px"
         />
-        <h2 class="title is-1" :style="navigation_page != 1 ? '' : 'margin-left: 30px'">{{ navigation_page }} / {{this.characters.info.pages}}</h2>
+        <p 
+          class="title is-1" 
+          :style="navigation_page != 1 ? '' : 'margin-left: 30px'"
+        >
+          {{ navigation_page }} / {{this.characters.info.pages}}
+        </p>
         <img 
           v-if="navigation_page != this.characters.info.pages" 
           @click="pageNext()"
           class="arrow-right" 
           id="arrow-nav" 
           src="../assets/arrow-back.png" 
-          height="30px" 
-          width="30px"
+          height="20px" 
+          width="20px"
           style="margin: 5px"
         />
       </div>
@@ -157,6 +162,7 @@ export default {
     line-height: 30px;
     box-sizing: border-box;
     border: 1px solid #e3e3e3;
+    padding: 0px 0px 0px 10px;
     color: #273849;
     outline: none;
     border-radius: 15px;

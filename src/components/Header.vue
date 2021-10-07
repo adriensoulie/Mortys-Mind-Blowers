@@ -7,9 +7,11 @@
             </div>
         </router-link> 
 
-        <a id='login' href=''>
-            Login
-        </a>
+        <div id='login' href=''>
+            <router-link to="/404" style="text-decoration: none; color: inherit;">
+                Login
+            </router-link>
+        </div>
     </div>
 </template>
 
