@@ -138,5 +138,46 @@ export default {
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
   }
+  input {
+    background-color: white;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 0 15px 0 30px;
+    border: 1px solid #e3e3e3;
+    color: #273849;
+    outline: none;
+    border-radius: 15px;
+    margin-right: 10px;
+    transition: border-color 0.2s ease;
+  }
+  select {
+    background-color: white;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    border: 1px solid #e3e3e3;
+    color: #273849;
+    outline: none;
+    border-radius: 15px;
+    margin-right: 10px;
+    transition: border-color 0.2s ease;
+  }
+  button {
+    height: 30px;
+    padding: 5px 20px 5px 20px;
+    background-color:	white;
+    border: 1px solid black;
+    color: black;
+    font-weight: 600;
+    transition: 0.3s;
+    border-radius: 4px;
+    text-decoration: inherit;
+  }
+  button:hover {
+    border: 1px solid transparent;
+    background-color: #97ce4c;
+    color: white;
+  }
 </style>
 
