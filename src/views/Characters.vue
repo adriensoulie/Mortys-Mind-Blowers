@@ -101,6 +101,7 @@ export default {
 <style scoped>
   #characters-container {
     display: flex;
+    margin: 0px 200px 0px 200px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
