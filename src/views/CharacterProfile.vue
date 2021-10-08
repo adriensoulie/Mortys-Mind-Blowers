@@ -17,20 +17,24 @@
                     <div v-else class="card">
                         <img class="card-image" :src=character.image />
                         <div class="card-infos">
-                            <h2 class="card-name"> {{ character.name }}</h2>
+                            <h2 v-if="character && character.name" class="card-name"> {{ character.name }}</h2>
                             <div class="card-status">
-                                <div v-if="character.status === 'Alive'" class="status-icon-alive"></div>
-                                <div v-if="character.status === 'Dead'" class="status-icon-dead"></div>
-                                <div v-if="character.status === 'unknown'" class="status-icon-unknown"></div>
-                                <p> {{ character.status }} - {{ character.species }} </p>
+                                <div v-if="character && character.status === 'Alive'" class="status-icon-alive"></div>
+                                <div v-if="character && character.status === 'Dead'" class="status-icon-dead"></div>
+                                <div v-if="character && character.status === 'unknown'" class="status-icon-unknown"></div>
+                                <p v-if="character && character.status && character.species">
+                                    {{ character.status }} - {{ character.species }} 
+                                </p>
                             </div>
                             <div class="section-infos">
                                 <p>Last Seen Location:</p> 
-                                <p class="font-weight">{{character.location.name}}</p>
+                                <p v-if="character && character.location && character.location.name" class="font-weight">
+                                    {{character.location.name}}
+                                </p>
                             </div>
                             <div class="section-infos">
                                 <p>Gender:</p>
-                                <p class="font-weight">{{ character.gender }}</p>
+                                <p v-if="character && character.gender" class="font-weight">{{ character.gender }}</p>
                             </div>
                         </div>
                     </div>
@@ -43,7 +47,6 @@
 
 <script>
 import Header from '../components/Header.vue'
-
 export default ({
     components: {
         Header
@@ -61,9 +64,6 @@ export default ({
     },
     beforeCreate() {
         this.$store.dispatch('getCharacterById', this.$route.path.replace("/characters/", ""))
-    },
-    created() {
-        this.$store.dispatch('getCharacterById', this.character.id)
     },
 })
 </script>

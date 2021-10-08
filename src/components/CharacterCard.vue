@@ -2,8 +2,8 @@
     <div>
         <router-link :to="{ name: 'Character', params: {id: characterId}}" style="text-decoration: none; color: inherit;">
             <div id='card'>
-                <img v-if="!characterImage" class='card-image'/>
-                <img v-else class='card-image' :src=characterImage />
+                <img v-if="characterImage" class='card-image' :src=characterImage />
+                <img v-else class='card-image' src='../assets/placeholder.jpeg'/>
                 <h2 class='character-name'>{{ characterName }}</h2>
             </div>
         </router-link> 
@@ -37,12 +37,13 @@ export default {
     .card-image {
         width: -webkit-fill-available;
         height: 300px;
+        width: 300px;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
     }
     .character-name {
         padding: 10px;
-        max-width: 300px;
+        max-width: 280px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

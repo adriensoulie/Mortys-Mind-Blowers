@@ -66,6 +66,7 @@ export default new Vuex.Store({
         },
         (error) => {
           console.log(error)
+          commit('SET_CHARACTERS', '')
         })
       .then(
         commit('SET_LOADING', false)

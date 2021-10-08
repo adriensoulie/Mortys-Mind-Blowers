@@ -4,6 +4,7 @@
     <section>
       <input 
         v-model="search"
+        v-on:keyup.enter="handleClick(search, status)"
         type="search"
         placeholder="Rick, Morty, Jerry..."
       />
@@ -24,13 +25,16 @@
           style="margin: 5px"
         />
         <p 
+          v-if="characters && characters.info && characters.info.pages"
           class="title is-1" 
-          :style="navigation_page != 1 ? '' : 'margin-left: 30px'"
+          :style="
+            navigation_page != 1 ? '' : 'margin-left: 30px'
+          "
         >
           {{ navigation_page }} / {{this.characters.info.pages}}
         </p>
         <img 
-          v-if="navigation_page != this.characters.info.pages" 
+          v-if="characters && characters.info && characters.info.pages && navigation_page != characters.info.pages" 
           @click="pageNext()"
           class="arrow-right" 
           id="arrow-nav" 
